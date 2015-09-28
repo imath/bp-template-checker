@@ -1,0 +1,19 @@
+{
+  "author": "The BuddyPress Contributors",
+  "version": "2.4.0",
+  "templates": [
+    {
+      "template": "activity/post-form.php",
+      "hook": "activity_post_form_2_4_0",
+      "changes": [
+        "bp_is_group_home() has been replaced by bp_is_group_activity() at line 69"
+      ]
+    }, {
+      "template": "groups/single/home.php",
+      "hook": "groups_single_home_2_4_0",
+      "changes": [
+        "line 59 to 68 have been replaced by bp_groups_front_template_part()"
+      ]
+    }
+  ]
+}
