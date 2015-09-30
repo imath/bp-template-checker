@@ -228,11 +228,14 @@ class BP_Template_Checker {
 
 			<h3><?php esc_html_e( 'Are your custom BuddyPress templates up to date ??', 'bp-template-checker' ); ?></h3>
 
-			<p class="description" style="margin-bottom:25px">
-				<?php esc_html_e( 'Since BuddyPress 2.4.0, we are adding a private action to the top of each template.' ) ;?>
-				<?php esc_html_e( 'Each time we edit a template, we also edit this action name, so that if it does not match the action of your custom template you are aware of potential troubles.' ) ;?>
-				<?php esc_html_e( 'If some troubles are found, make sure to update the template and add the new action name at the top of it.' ) ;?>
-			</p>
+			<div class="description" style="margin-bottom:25px">
+				<p><?php esc_html_e( 'Since BuddyPress 2.4.0, we are adding a private action to the top of each template.' ) ;?>
+				<p><?php esc_html_e( 'This allows us to check your overloaded templates in future to see what version is reported and if that matches to our changelog.' ) ;?></p>
+				<p><?php esc_html_e( 'Our changelog reports what templates we have updated and for what reason , allowing you to see what new features require template updating' ) ;?></p>
+				<p><?php esc_html_e( 'We strongly urge developers  or template site maintainers to add this new action hook with current template version to each overloaded template
+				file when of course you have made the necessary updates or even if there are no changes in this release cycle as it will sync your templates with our changelog version updates.' ) ;?></p>
+				<p><?php esc_html_e( 'Each time we edit a template, we also edit this action name, so that if it does not match the action of your custom template you are aware of potential troubles.' ) ;?></p>
+			</div>
 
 			<?php
 			$changelog = json_decode( file_get_contents( $this->templates_dir . '/changelog.json' ) );

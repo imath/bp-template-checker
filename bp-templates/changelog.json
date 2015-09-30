@@ -14,6 +14,13 @@
       "changes": [
         "line 59 to 68 have been replaced by bp_groups_front_template_part()"
       ]
+    }, {
+      "template": "groups/index.php",
+      "hook": "groups_index_2_4_0",
+      "changes": [
+        "line 59 to 68 have been replaced with something cool, really cool, you'll want it!"
+
+      ]
     }
   ]
 }
