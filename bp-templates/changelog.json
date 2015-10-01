@@ -3,17 +3,29 @@
   "version": "2.4.0",
   "templates": [
     {
-      "template": "activity/post-form.php",
-      "hook": "activity_post_form_2_4_0",
+      "template": "activity/index.php",
+      "edited": "2.3.0",
+      "created": "1.7.0",
       "changes": [
-        "bp_is_group_home() has been replaced by bp_is_group_activity() at line 69"
-      ]
+        "Remove redundant ARIA role=\"main\""
+      ],
+      "requires": "bp_activity_show_filters"
     }, {
-      "template": "groups/single/home.php",
-      "hook": "groups_single_home_2_4_0",
+      "template": "groups/single/activity.php",
+      "edited": "2.3.0",
+      "created": "1.7.0",
       "changes": [
-        "line 59 to 68 have been replaced by bp_groups_front_template_part()"
-      ]
+        "Remove redundant ARIA role=\"main\""
+      ],
+      "requires": "bp_activity_show_filters"
+    }, {
+      "template": "members/single/activity.php",
+      "edited": "2.3.0",
+      "created": "1.7.0",
+      "changes": [
+        "Remove redundant ARIA role=\"main\""
+      ],
+      "requires": "bp_activity_show_filters"
     }
   ]
 }
