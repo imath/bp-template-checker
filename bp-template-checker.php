@@ -139,11 +139,24 @@ class BP_Template_Checker {
 	}
 
 	/**
+	 * is WP_DEBUG true ?
+	 */ 
+	public function is_debug() {
+		$is_debug = false;
+
+		if ( defined( 'WP_DEBUG' ) ) {
+			$is_debug = WP_DEBUG;
+		}
+
+		return $is_debug;
+	}
+
+	/**
 	 * Set hooks
 	 */
 	private function setup_hooks() {
 		// This plugin && BuddyPress share the same config & BuddyPress version is ok
-		if ( $this->version_check() && $this->root_blog_check() && $this->config['network_status'] ) {
+		if ( $this->version_check() && $this->root_blog_check() && $this->config['network_status'] && true === $this->is_debug() ) {
 			// Page
 			add_action( bp_core_admin_hook(), array( $this, 'admin_menu' )       );
 
@@ -332,6 +345,10 @@ class BP_Template_Checker {
 
 		if ( bp_core_do_network_admin() && ! is_plugin_active_for_network( $this->basename ) ) {
 			$warnings[] = sprintf( __( '%s and BuddyPress need to share the same network configuration.', 'bp-template-checker' ), $this->name );
+		}
+
+		if ( true !== $this->is_debug() ) {
+			$warnings[] = sprintf( __( '%s requires the WP_DEBUG mode to be true.', 'bp-template-checker' ), $this->name );
 		}
 
 		if ( ! empty( $warnings ) ) :
