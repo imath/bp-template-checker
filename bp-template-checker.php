@@ -260,7 +260,7 @@ class BP_Template_Checker {
 						// Get the headers of the override
 						$headers = get_file_data( $current_template, array( 'edited' => 'Edited', 'created' => 'Created', 'requires' => 'Requires' ) );
 
-						if ( $headers['edited'] !== $edited->edited || $headers['requires'] !== $edited->requires ) {
+						if ( $headers['edited'] !== $edited->edited || ( isset( $edited->requires ) && $headers['requires'] !== $edited->requires ) ) {
 							$outdated_overrides[$edited->template] = $current_template;
 
 							// Last Edited version doesn't match?
@@ -269,7 +269,7 @@ class BP_Template_Checker {
 							}
 
 							// Some missing required functions?
-							if ( $headers['requires'] !== $edited->requires ) {
+							if ( isset( $edited->requires ) && $headers['requires'] !== $edited->requires ) {
 								$requires[ $edited->template ] = $edited->requires;
 							}
 						}

@@ -11,6 +11,13 @@
       ],
       "requires": "bp_activity_show_filters"
     }, {
+      "template": "groups/create.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        "Line 256 to 286: Add a new creation step for the Cover Image feature."
+      ]
+    }, {
       "template": "groups/single/activity.php",
       "edited": "2.3.0",
       "created": "1.7.0",
@@ -19,6 +26,27 @@
       ],
       "requires": "bp_activity_show_filters"
     }, {
+      "template": "groups/single/admin.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        "Line 210 to 237: Add html output for the Cover Image feature manage screen."
+      ]
+    }, {
+      "template": "groups/single/cover-image-header.php",
+      "edited": "2.4.0",
+      "created": "2.4.0",
+      "changes": [
+        "Full template added to template pack"
+      ]
+    }, {
+      "template": "groups/single/home.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        "Line 16 to 25: New conditional statement to load the regular header or the cover image header."
+      ]
+    }, {
       "template": "members/single/activity.php",
       "edited": "2.3.0",
       "created": "1.7.0",
@@ -26,6 +54,34 @@
         "Remove redundant ARIA role=\"main\""
       ],
       "requires": "bp_activity_show_filters"
+    }, {
+      "template": "members/single/cover-image-header.php",
+      "edited": "2.4.0",
+      "created": "2.4.0",
+      "changes": [
+        "Full template added to template pack"
+      ]
+    }, {
+      "template": "members/single/home.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        "Line 14 to 23: New conditional statement to load the regular header or the cover image header."
+      ]
+    }, {
+      "template": "members/single/profile.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        "Line 40 to 44: New case to load the change-cover-image template."
+      ]
+    }, {
+      "template": "members/single/profile/change-cover-image.php",
+      "edited": "2.4.0",
+      "created": "2.4.0",
+      "changes": [
+        "Full template added to template pack."
+      ]
     }
   ]
 }
