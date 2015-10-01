@@ -11,7 +11,7 @@
  * @buddypress-plugin
  * Plugin Name:       BuddyPress template checker
  * Plugin URI:        https://github.com/imath/bp-template-checker
- * Description:       What if the Activity Post Form was using Backbone?
+ * Description:       Tool to check overriden templates are up to date
  * Version:           1.0.0-alpha
  * Author:            imath
  * Author URI:        https://github.com/imath/bp-template-checker
@@ -229,12 +229,14 @@ class BP_Template_Checker {
 			<h3><?php esc_html_e( 'Are your custom BuddyPress templates up to date ??', 'bp-template-checker' ); ?></h3>
 
 			<div class="description" style="margin-bottom:25px">
-				<p><?php esc_html_e( 'Since BuddyPress 2.4.0, we are adding a private action to the top of each template.' ) ;?>
+				<p><?php esc_html_e( 'Since BuddyPress 2.4.0, we are adding a new {@internal}} inline comment in each template&#39;s header dockblock.', 'bp-template-checker' ) ;?>
 				<p><?php esc_html_e( 'This allows us to check your overloaded templates in future to see what version is reported and if that matches to our changelog.' ) ;?></p>
-				<p><?php esc_html_e( 'Our changelog reports what templates we have updated and for what reason , allowing you to see what new features require template updating' ) ;?></p>
-				<p><?php esc_html_e( 'We strongly urge developers  or template site maintainers to add this new action hook with current template version to each overloaded template
-				file when of course you have made the necessary updates or even if there are no changes in this release cycle as it will sync your templates with our changelog version updates.' ) ;?></p>
-				<p><?php esc_html_e( 'Each time we edit a template, we also edit this action name, so that if it does not match the action of your custom template you are aware of potential troubles.' ) ;?></p>
+				<p><?php esc_html_e( 'Our changelog reports what templates we have updated and for what reason, allowing you to see what new features require template updating' ) ;?></p>
+				<p>
+					<?php esc_html_e( 'We strongly urge developers or template site maintainers to add this new {@internal}} inline comment to each overloaded template file when of course you have made the necessary updates', 'bp-template-checker' ) ;?>
+					<?php esc_html_e( ' or even if there are no changes in this release cycle as it will sync your templates with our changelog version updates.', 'bp-template-checker' ) ;?>
+				</p>
+				<p><?php esc_html_e( 'Each time we edit a template, we also edit this {@internal}} inline comment, so that if it does not match the one of your custom template you are aware of potential troubles.', 'bp-template-checker' ) ;?></p>
 			</div>
 
 			<?php
@@ -243,23 +245,34 @@ class BP_Template_Checker {
 			// Remove legacy from stack
 			bp_deregister_template_stack( 'bp_get_theme_compat_dir',  14 );
 
-			$this->uptodate_templates = array();
-			$overrides                = array();
-			$changes                  = array();
+			$overrides          = array();
+			$outdated_overrides = array();
+			$changes            = array();
+			$requires           = array();
 
 			foreach ( $changelog->templates as $edited ) {
 				foreach ( bp_get_template_stack() as $stack ) {
-					$this->current_template = trailingslashit( $stack ) . $edited->template;
+					$current_template = trailingslashit( $stack ) . $edited->template;
 
-					if ( file_exists( $this->current_template ) ) {
-						$overrides[ $edited->template ] = $this->current_template;
-						$changes[ $edited->template ]   = $edited->changes;
+					if ( file_exists( $current_template ) ) {
+						$overrides[$edited->template] = $current_template;
 
-						add_action( '_bp_template_' . $edited->hook, array( $this, 'check_template' ) );
+						// Get the headers of the override
+						$headers = get_file_data( $current_template, array( 'edited' => 'Edited', 'created' => 'Created', 'requires' => 'Requires' ) );
 
-						ob_start();
-						require( $this->current_template );
-						ob_end_clean();
+						if ( $headers['edited'] !== $edited->edited || $headers['requires'] !== $edited->requires ) {
+							$outdated_overrides[$edited->template] = $current_template;
+
+							// Last Edited version doesn't match?
+							if ( $headers['edited'] !== $edited->edited ) {
+								$changes[ $edited->template ] = $edited->changes;
+							}
+
+							// Some missing required functions?
+							if ( $headers['requires'] !== $edited->requires ) {
+								$requires[ $edited->template ] = $edited->requires;
+							}
+						}
 					}
 				}
 			}
@@ -271,9 +284,8 @@ class BP_Template_Checker {
 				</div>
 				<?php
 			} else {
-				$diff = array_diff( $overrides, $this->uptodate_templates );
 
-				if ( empty( $diff ) ) {
+				if ( empty( $outdated_overrides ) ) {
 					?>
 					<div id="message" class="updated">
 						<p><?php esc_html_e( 'All your templates are up to date!', 'bp-template-checker' ); ?></p>
@@ -282,11 +294,22 @@ class BP_Template_Checker {
 				} else {
 					?>
 					<div id="message" class="error">
-						<p><?php printf( esc_html__( '%d template(s) outdated, please upgrade the following template(s) !', 'bp-template-checker' ), count( $diff ) );?></p>
+						<p><?php printf( esc_html__( '%d template(s) outdated, please upgrade the following template(s) !', 'bp-template-checker' ), count( $outdated_overrides ) );?></p>
 					</div>
 					<ol>
-						<?php foreach ( array_keys( $diff ) as $ot ) :
-							echo '<li><strong>' . trim( str_replace( get_theme_root(), '', $overrides[ $ot ] ), '/' ) . '</strong><ul><li>' . join( '</li><li>', $changes[ $ot ] ) . '</li></ul></li>';
+						<?php foreach ( array_keys( $outdated_overrides ) as $ot ) :
+							echo '<li><strong>' . trim( str_replace( get_theme_root(), '', $overrides[ $ot ] ), '/' ) . '</strong>';
+
+							if ( isset( $changes[ $ot ] ) ) {
+								echo '<ul><li>' . join( '</li><li>', $changes[ $ot ] ) . '</li></ul></li>';
+							}
+
+							if ( isset( $requires[ $ot ] ) ) {
+								echo '<ul><li class="attention">' . sprintf( __( 'These function(s) are required inside your template: %s', 'bp-template-checker' ),  $requires[ $ot ] ) . '</li></ul>';
+							}
+
+							echo '</li>';
+
 						endforeach ;?>
 					</ol>
 					<?php
@@ -295,10 +318,6 @@ class BP_Template_Checker {
 			?>
 		</div>
 		<?php
-	}
-
-	public function check_template() {
-		$this->uptodate_templates[] = $this->current_template;
 	}
 
 	/**
