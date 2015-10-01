@@ -3,9 +3,8 @@
  * BuddyPress - Groups Single Item Activity
  *
  * {@internal
- * Edited: 2.3.0
+ * Edited: 2.4.0
  * Created: 1.7
- * Requires: bp_activity_show_filters
  * }}
  *
  * @package BuddyPress

@@ -248,7 +248,6 @@ class BP_Template_Checker {
 			$overrides          = array();
 			$outdated_overrides = array();
 			$changes            = array();
-			$requires           = array();
 
 			foreach ( $changelog->templates as $edited ) {
 				foreach ( bp_get_template_stack() as $stack ) {
@@ -258,20 +257,11 @@ class BP_Template_Checker {
 						$overrides[$edited->template] = $current_template;
 
 						// Get the headers of the override
-						$headers = get_file_data( $current_template, array( 'edited' => 'Edited', 'created' => 'Created', 'requires' => 'Requires' ) );
+						$headers = get_file_data( $current_template, array( 'edited' => 'Edited' ) );
 
-						if ( $headers['edited'] !== $edited->edited || ( isset( $edited->requires ) && $headers['requires'] !== $edited->requires ) ) {
+						if ( $headers['edited'] !== $edited->edited ) {
 							$outdated_overrides[$edited->template] = $current_template;
-
-							// Last Edited version doesn't match?
-							if ( $headers['edited'] !== $edited->edited ) {
-								$changes[ $edited->template ] = $edited->changes;
-							}
-
-							// Some missing required functions?
-							if ( isset( $edited->requires ) && $headers['requires'] !== $edited->requires ) {
-								$requires[ $edited->template ] = $edited->requires;
-							}
+							$changes[ $edited->template ] = $edited->changes;
 						}
 					}
 				}
@@ -301,11 +291,17 @@ class BP_Template_Checker {
 							echo '<li><strong>' . trim( str_replace( get_theme_root(), '', $overrides[ $ot ] ), '/' ) . '</strong>';
 
 							if ( isset( $changes[ $ot ] ) ) {
-								echo '<ul><li>' . join( '</li><li>', $changes[ $ot ] ) . '</li></ul></li>';
-							}
+								echo '<table>';
+								foreach ( (array) $changes[ $ot ] as $log ) {
+									$class = '';
 
-							if ( isset( $requires[ $ot ] ) ) {
-								echo '<ul><li class="attention">' . sprintf( __( 'These function(s) are required inside your template: %s', 'bp-template-checker' ),  $requires[ $ot ] ) . '</li></ul>';
+									if ( 'high' === $log->criticity ) {
+										$class = 'class="attention"';
+									}
+
+									echo '<tr '. $class .'><td>' . $log->version . '</td><td>' . $log->log . '</td></tr>';
+								}
+								echo '</table>';
 							}
 
 							echo '</li>';
