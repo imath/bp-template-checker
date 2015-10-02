@@ -7,100 +7,100 @@
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment"},
-        { "version": "2.4.0", "criticity": "low", "log": "Standardizing @since tags"},
-        { "version": "2.3.0", "criticity": "low", "log": "Remove redundant ARIA role=\"main\""},
-        { "version": "2.3.0", "criticity": "low", "log": "Tidy up SVN properties"},
-        { "version": "2.3.0", "criticity": "low", "log": "Adds hooks documentation for the activity template files."},
-        { "version": "2.3.0", "criticity": "low", "log": "Remove unwanted svn:executable and svn:mime-type SVN properties throughout project."},
-        { "version": "2.1.0", "criticity": "high", "log": "Introduce bp_activity_show_filters(), and use it for generating dynamic activity filter dropdowns."}
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment"},
+        { "version": "2.4.0", "importance": "low", "log": "Standardizing @since tags"},
+        { "version": "2.3.0", "importance": "low", "log": "Remove redundant ARIA role=\"main\""},
+        { "version": "2.3.0", "importance": "low", "log": "Tidy up SVN properties"},
+        { "version": "2.3.0", "importance": "low", "log": "Adds hooks documentation for the activity template files."},
+        { "version": "2.3.0", "importance": "low", "log": "Remove unwanted svn:executable and svn:mime-type SVN properties throughout project."},
+        { "version": "2.1.0", "importance": "high", "log": "Introduce bp_activity_show_filters(), and use it for generating dynamic activity filter dropdowns."}
       ]
     }, {
       "template": "groups/create.php",
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment"},
-        { "version": "2.4.0", "criticity": "high", "log": "Line 256 to 286: Add a new creation step for the Cover Image feature."}
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment"},
+        { "version": "2.4.0", "importance": "high", "log": "Line 256 to 286: Add a new creation step for the Cover Image feature."}
       ]
     }, {
       "template": "groups/single/activity.php",
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment"},
-        { "version": "2.4.0", "criticity": "low", "log": "Standardizing @since tags"},
-        { "version": "2.3.0", "criticity": "low", "log": "Remove redundant ARIA role=\"main\""},
-        { "version": "2.3.0", "criticity": "low", "log": "Tidy up SVN properties"},
-        { "version": "2.3.0", "criticity": "low", "log": "Adds hooks documentation for the groups template files."},
-        { "version": "2.3.0", "criticity": "low", "log": "Remove unwanted svn:executable and svn:mime-type SVN properties throughout project."},
-        { "version": "2.1.0", "criticity": "high", "log": "Introduce bp_activity_show_filters(), and use it for generating dynamic activity filter dropdowns."}
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment"},
+        { "version": "2.4.0", "importance": "low", "log": "Standardizing @since tags"},
+        { "version": "2.3.0", "importance": "low", "log": "Remove redundant ARIA role=\"main\""},
+        { "version": "2.3.0", "importance": "low", "log": "Tidy up SVN properties"},
+        { "version": "2.3.0", "importance": "low", "log": "Adds hooks documentation for the groups template files."},
+        { "version": "2.3.0", "importance": "low", "log": "Remove unwanted svn:executable and svn:mime-type SVN properties throughout project."},
+        { "version": "2.1.0", "importance": "high", "log": "Introduce bp_activity_show_filters(), and use it for generating dynamic activity filter dropdowns."}
       ]
     }, {
       "template": "groups/single/admin.php",
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment"},
-        { "version": "2.4.0", "criticity": "high", "log": "Line 210 to 237: Add html output for the Cover Image feature manage screen."}
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment"},
+        { "version": "2.4.0", "importance": "high", "log": "Line 210 to 237: Add html output for the Cover Image feature manage screen."}
       ]
     }, {
       "template": "groups/single/cover-image-header.php",
       "edited": "2.4.0",
       "created": "2.4.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Full template added to template pack" }
+        { "version": "2.4.0", "importance": "high", "log": "Full template added to template pack" }
       ]
     }, {
       "template": "groups/single/home.php",
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment" },
-        { "version": "2.4.0", "criticity": "high", "log": "Line 16 to 25: New conditional statement to load the regular header or the cover image header." }
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment" },
+        { "version": "2.4.0", "importance": "high", "log": "Line 16 to 25: New conditional statement to load the regular header or the cover image header." }
       ]
     }, {
       "template": "members/single/activity.php",
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment"},
-        { "version": "2.4.0", "criticity": "low", "log": "Standardizing @since tags"},
-        { "version": "2.3.0", "criticity": "low", "log": "Remove redundant ARIA role=\"main\""},
-        { "version": "2.3.0", "criticity": "low", "log": "Tidy up SVN properties"},
-        { "version": "2.3.0", "criticity": "low", "log": "Adds hooks documentation for the members template files."},
-        { "version": "2.3.0", "criticity": "low", "log": "Remove unwanted svn:executable and svn:mime-type SVN properties throughout project."},
-        { "version": "2.1.0", "criticity": "high", "log": "Introduce bp_activity_show_filters(), and use it for generating dynamic activity filter dropdowns."}
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment"},
+        { "version": "2.4.0", "importance": "low", "log": "Standardizing @since tags"},
+        { "version": "2.3.0", "importance": "low", "log": "Remove redundant ARIA role=\"main\""},
+        { "version": "2.3.0", "importance": "low", "log": "Tidy up SVN properties"},
+        { "version": "2.3.0", "importance": "low", "log": "Adds hooks documentation for the members template files."},
+        { "version": "2.3.0", "importance": "low", "log": "Remove unwanted svn:executable and svn:mime-type SVN properties throughout project."},
+        { "version": "2.1.0", "importance": "high", "log": "Introduce bp_activity_show_filters(), and use it for generating dynamic activity filter dropdowns."}
       ]
     }, {
       "template": "members/single/cover-image-header.php",
       "edited": "2.4.0",
       "created": "2.4.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Full template added to template pack" }
+        { "version": "2.4.0", "importance": "high", "log": "Full template added to template pack" }
       ]
     }, {
       "template": "members/single/home.php",
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment" },
-        { "version": "2.4.0", "criticity": "high", "log": "Line 14 to 23: New conditional statement to load the regular header or the cover image header." }
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment" },
+        { "version": "2.4.0", "importance": "high", "log": "Line 14 to 23: New conditional statement to load the regular header or the cover image header." }
       ]
     }, {
       "template": "members/single/profile.php",
       "edited": "2.4.0",
       "created": "1.7.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Create tracking @internal inline comment" },
-        { "version": "2.4.0", "criticity": "high", "log": "Line 40 to 44: New case to load the change-cover-image template." }
+        { "version": "2.4.0", "importance": "high", "log": "Create tracking @internal inline comment" },
+        { "version": "2.4.0", "importance": "high", "log": "Line 40 to 44: New case to load the change-cover-image template." }
       ]
     }, {
       "template": "members/single/profile/change-cover-image.php",
       "edited": "2.4.0",
       "created": "2.4.0",
       "changes": [
-        { "version": "2.4.0", "criticity": "high", "log": "Full template added to template pack" }
+        { "version": "2.4.0", "importance": "high", "log": "Full template added to template pack" }
       ]
     }
   ]

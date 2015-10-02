@@ -308,7 +308,7 @@ class BP_Template_Checker {
 								foreach ( (array) $changes[ $ot ] as $log ) {
 									$class = '';
 
-									if ( 'high' === $log->criticity ) {
+									if ( 'high' === $log->importance ) {
 										$class = 'class="attention"';
 									}
 
