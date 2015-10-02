@@ -253,7 +253,15 @@ class BP_Template_Checker {
 			</div>
 
 			<?php
-			$changelog = json_decode( file_get_contents( $this->templates_dir . '/changelog.json' ) );
+			// Default to the plugin's one
+			$changelog_location = $this->templates_dir . '/changelog.json';
+
+			// Use BuddyPress one if it exists
+			if ( file_exists( buddypress()->themes_dir . '/bp-legacy/changelog.json' ) ) {
+				$changelog_location = buddypress()->themes_dir . '/bp-legacy/changelog.json';
+			}
+
+			$changelog = json_decode( file_get_contents( $changelog_location ) );
 
 			// Remove legacy from stack
 			bp_deregister_template_stack( 'bp_get_theme_compat_dir',  14 );
@@ -308,11 +316,19 @@ class BP_Template_Checker {
 								foreach ( (array) $changes[ $ot ] as $log ) {
 									$class = '';
 
-									if ( 'high' === $log->importance ) {
+									if ( isset( $log->importance ) && 'high' === $log->importance ) {
 										$class = 'class="attention"';
 									}
 
-									echo '<tr '. $class .'><td>' . $log->version . '</td><td>' . $log->log . '</td></tr>';
+									$output = '<tr '. $class .'>';
+
+									if ( isset( $log->revision ) ) {
+										$output .= '<td><a href="https://buddypress.trac.wordpress.org/changeset/' . $log->revision . '" title="' . esc_attr__( 'View Changeset', 'bp_template_checker' ) . '">r' . $log->revision . '</a></td>';
+									}
+
+									$output .= '<td>' . $log->version . '</td><td>' . $log->log . '</td></tr>';
+
+									echo $output;
 								}
 								echo '</table>';
 							}
