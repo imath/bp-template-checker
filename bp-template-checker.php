@@ -244,12 +244,12 @@ class BP_Template_Checker {
 			<div class="description" style="margin-bottom:25px">
 				<p><?php esc_html_e( 'Since BuddyPress 2.4.0, we are adding a new {@internal}} inline comment in each template&#39;s header dockblock.', 'bp-template-checker' ) ;?>
 				<p><?php esc_html_e( 'This allows us to check your overloaded templates in future to see what version is reported and if that matches to our changelog.' ) ;?></p>
-				<p><?php esc_html_e( 'Our changelog reports what templates we have updated and for what reason, allowing you to see what new features require template updating' ) ;?></p>
+				<p><?php esc_html_e( 'Our changelog reports which templates we have updated and for what reason, allowing you to see what new features require template updating' ) ;?></p>
 				<p>
 					<?php esc_html_e( 'We strongly urge developers or template site maintainers to add this new {@internal}} inline comment to each overloaded template file when of course you have made the necessary updates', 'bp-template-checker' ) ;?>
 					<?php esc_html_e( ' or even if there are no changes in this release cycle as it will sync your templates with our changelog version updates.', 'bp-template-checker' ) ;?>
 				</p>
-				<p><?php esc_html_e( 'Each time we edit a template, we also edit this {@internal}} inline comment, so that if it does not match the one of your custom template you are aware of potential troubles.', 'bp-template-checker' ) ;?></p>
+				<p><?php esc_html_e( 'Each time we edit a template, we also edit this {@internal}} inline comment, so that if it does not match with your custom template version stamp you are aware that you may need to check our codex for the necessary changes.', 'bp-template-checker' ) ;?></p>
 			</div>
 
 			<?php
