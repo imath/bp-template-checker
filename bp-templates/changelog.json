@@ -16,6 +16,20 @@
         { "version": "2.1.0", "importance": "high", "log": "Introduce bp_activity_show_filters(), and use it for generating dynamic activity filter dropdowns."}
       ]
     }, {
+      "template": "activity/entry.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        { "version": "2.1.0", "importance": "high", "log": "Add @mention auto suggest to textarea update ( https://codex.buddypress.org/template-updates-2-1/#mentions-auto-suggest )"}
+      ]
+    }, {
+      "template": "activity/post-form.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        { "version": "2.1.0", "importance": "high", "log": "Add @mention auto suggest to whats new textarea ( https://codex.buddypress.org/template-updates-2-1/#mentions-auto-suggest )"}
+      ]
+    }, {
       "template": "groups/create.php",
       "edited": "2.4.0",
       "created": "1.7.0",
@@ -60,6 +74,13 @@
         { "version": "2.4.0", "importance": "high", "log": "Line 16 to 25: New conditional statement to load the regular header or the cover image header." }
       ]
     }, {
+      "template": "members/register.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        { "version": "2.1.0", "importance": "high", "log": "Update password inputs fields to use Password Strength meter (https://codex.buddypress.org/template-updates-2-1/#password-strength)."}
+      ]
+    }, {
       "template": "members/single/activity.php",
       "edited": "2.4.0",
       "created": "1.7.0",
@@ -101,6 +122,13 @@
       "created": "2.4.0",
       "changes": [
         { "version": "2.4.0", "importance": "high", "log": "Full template added to template pack" }
+      ]
+    }, {
+      "template": "members/single/settings/general.php",
+      "edited": "2.4.0",
+      "created": "1.7.0",
+      "changes": [
+        { "version": "2.1.0", "importance": "high", "log": "Update user account password update to use Password Strength Meter ( https://codex.buddypress.org/template-updates-2-1/#password-strength )" }
       ]
     }
   ]
