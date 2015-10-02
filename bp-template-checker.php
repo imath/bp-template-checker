@@ -140,7 +140,7 @@ class BP_Template_Checker {
 
 	/**
 	 * is WP_DEBUG true ?
-	 */ 
+	 */
 	public function is_debug() {
 		$is_debug = false;
 
@@ -348,7 +348,7 @@ class BP_Template_Checker {
 		}
 
 		if ( true !== $this->is_debug() ) {
-			$warnings[] = sprintf( __( '%s requires the WP_DEBUG mode to be true.', 'bp-template-checker' ), $this->name );
+			$warnings[] = sprintf( __( 'To enable the %s function please set WP_DEBUG mode to  \'true\'.', 'bp-template-checker' ), $this->name );
 		}
 
 		if ( ! empty( $warnings ) ) :
