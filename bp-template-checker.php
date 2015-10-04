@@ -201,9 +201,29 @@ class BP_Template_Checker {
 	}
 
 	/**
-	 * Not needed...
+	 * Hook bp_admin_enqueue_scripts when on plugin's page
 	 */
-	public function admin_load() {}
+	public function admin_load() {
+		add_action( 'bp_admin_enqueue_scripts', array( $this, 'inline_style' ) );
+	}
+
+	/**
+	 * Add inline style
+	 */
+	public function inline_style() {
+		wp_add_inline_style( 'bp-admin-common-css', '
+			#bp-template-checker-outdated a,
+			#bp-template-checker-outdated a:hover {
+				text-decoration:none;
+				border:none;
+				color:#555;
+			}
+
+			#bp-template-checker-outdated tr.attention {
+			 	color:#0073aa;
+			 }
+		' );
+	}
 
 	/**
 	 * Modify highlighted menu
@@ -307,7 +327,7 @@ class BP_Template_Checker {
 					<div id="message" class="error">
 						<p><?php printf( esc_html__( '%d template(s) outdated, please upgrade the following template(s) !', 'bp-template-checker' ), count( $outdated_overrides ) );?></p>
 					</div>
-					<ol>
+					<ol id="bp-template-checker-outdated">
 						<?php foreach ( array_keys( $outdated_overrides ) as $ot ) :
 							echo '<li><strong>' . trim( str_replace( get_theme_root(), '', $overrides[ $ot ] ), '/' ) . '</strong>';
 
@@ -323,12 +343,20 @@ class BP_Template_Checker {
 									$output = '<tr '. $class .'>';
 
 									if ( isset( $log->revision ) ) {
-										$output .= '<td><a href="https://buddypress.trac.wordpress.org/changeset/' . $log->revision . '" title="' . esc_attr__( 'View Changeset', 'bp_template_checker' ) . '">r' . $log->revision . '</a></td>';
+										$output .= '<td><a href="https://buddypress.trac.wordpress.org/changeset/' . $log->revision . '" title="' . esc_attr( sprintf( __( 'View %d Changeset', 'bp_template_checker' ), $log->revision ) ) . '"><span class="dashicons dashicons-admin-generic"></span></a></td>';
 									}
 
-									$output .= '<td>' . $log->version . '</td><td>' . $log->log . '</td></tr>';
+									$output .= '<td>' . $log->version . '</td><td>' . $log->log . '</td>';
 
-									echo $output;
+									if ( isset( $log->codex_page ) ) {
+										if ( false !== $log->codex_page ) {
+											$output .= '<td><a href="' . esc_url( $log->codex_page ). '" title="' . esc_attr__( 'View Codex Page', 'bp_template_checker' ) . '"><span class="dashicons dashicons-book-alt"></span></a></td>';
+										} else {
+											$output .= '<td></td>';
+										}
+									}
+
+									echo $output . '</tr>';
 								}
 								echo '</table>';
 							}
